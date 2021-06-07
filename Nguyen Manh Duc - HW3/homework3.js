@@ -144,3 +144,48 @@ for (let i = 0; i < seq2.length; i++) {
 }
 alert(seq + ' => ' + strn);
 
+// 10.2
+seq = prompt('Enter a sequence of names');
+seq2 = seq.split(',').map(x => '<' + x + '>');
+strn = '';
+for (let i = 0; i < seq2.length; i++) {
+    if (i != (seq2.length - 1)) {
+        strn += seq2[i] + ',';
+    } else {
+        strn += seq2[i];
+    }
+}
+alert(seq + ' => ' + strn);
+
+// 11.
+seq = prompt('Enter a sequence number');
+seq2 = seq.split(',');
+strn = '';
+let pos0;
+for (let i = 0; i < seq2.length; i++) {
+    if (Number(seq2[i]) % 2) {
+        strn += seq2[i];
+        pos0 = i;
+        break;
+    }
+}
+for (let i = pos0 + 1; i < seq2.length; i++) {
+    if (Number(seq2[i]) % 2) {
+        strn += ',' + seq2[i];
+    }
+}
+alert(seq + ' => ' + strn);
+
+// 11.2
+seq = prompt('Enter a sequence number');
+seq2 = seq.split(',').filter(x => x % 2);
+strn = '';
+for (let i = 0; i < seq2.length; i++) {
+    if (i != seq2.length - 1) {
+        strn += seq2[i] + ',';
+    } else {
+        strn += seq2[i];
+    }
+}
+alert(seq + ' => ' + strn);
+
