@@ -21,6 +21,7 @@ const task = {
 };
 
 const { subject, dueDate, assignTo } = task;
+console.log({ subject, dueDate, assignTo });
 
 // 3.
 // 3.1. Object
@@ -46,6 +47,7 @@ while (true) {
     let val = dict[key];
     if (val) {
         alert(key + "\n" + val);
+    } else if (key == '') {
         break;
     } else {
         let add = prompt('We could not find your word: ' + key + ', leave your explanation');
@@ -60,25 +62,25 @@ let products = [{
     brand: 'Xiaomi',
     price: 428,
     color: 'White',
-    category: 'Charger',
+    category: 'charger',
 }, {
     name: 'VSmart Active 1',
     brand: 'VSmart',
     price: 5487,
     color: 'Black',
-    category: 'Phone',
+    category: 'phone',
 }, {
     name: 'IPhone X',
     brand: 'Apple',
     price: 21490,
     color: 'Gray',
-    category: 'Phone',
+    category: 'phone',
 }, {
     name: 'Samsung Galaxy A9',
     brand: 'Samsung',
     price: 8490,
     color: 'Blue',
-    category: 'Phone',
+    category: 'phone',
 }];
 
 // 5.1.
@@ -102,25 +104,33 @@ for (let i = 0; i < products.length; i++) {
     console.log('    Price: ' + products[i].price);
 }
 
-let pos = Number(prompt('Enter product position:'));
-let item = products[pos - 1];
-console.log("Name: " + item.name);
-console.log("Brand: " + item.brand);
-console.log("Price: " + item.price);
-console.log("Color: " + item.color);
-console.log("Category: " + item.category);
+while (true) {
+    let pos = Number(prompt('Enter product position:'));
+    if (pos == 0) {
+        break;
+    } else {
+        let item = products[pos - 1];
+        console.log("Name: " + item.name);
+        console.log("Brand: " + item.brand);
+        console.log("Price: " + item.price);
+        console.log("Color: " + item.color);
+        console.log("Category: " + item.category);
+    }
+}
+
 
 // 5.3.
 while (true) {
     let cate = prompt('Enter your category?');
     if (cate == '') {
         break;
-    }
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].category == cate) {
-            myPrint();
-            console.log('Name: ' + products[i].name);
-            console.log('Price: ' + products[i].price);
+    } else {
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].category == cate) {
+                myPrint();
+                console.log('Name: ' + products[i].name);
+                console.log('Price: ' + products[i].price);
+            }
         }
     }
 }
@@ -137,29 +147,38 @@ for (let i = 0; i < products.length; i++) {
 }
 
 // 5.5.
-let provider = prompt('Enter provider');
 function addComma(str) {
     let arr = str.split(' ');
     for (let i in arr) {
-        arr[i] += ',';
+        if (i != 0) {
+            arr[i] = ',' + arr[i];
+        }
     }
-    let str = '';
+    let str1 = '';
     for (let i in arr) {
-        str += arr[i];
+        str1 += arr[i];
     }
-    return str;
+    return str1;
 }
-for (let i = 0; i < products.length; i++) {
-    if (products[i].providers.split.includes(provider)) {
-        myPrint();
-        console.log('Name: ' + products[i].name);
-        console.log('Brand: ' + products[i].brand);
-        console.log('Price: ' + products[i].price);
-        console.log('Color: ' + products[i].color);
-        console.log('Category: ' + products[i].category);
-        console.log('Providers: ' + addComma(products[i].providers));
+while (true) {
+    let provider = prompt('Enter provider');
+    if (provider == '') {
+        break;
+    } else {
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].providers.split(' ').includes(provider)) {
+                myPrint();
+                console.log('Name: ' + products[i].name);
+                console.log('Brand: ' + products[i].brand);
+                console.log('Price: ' + products[i].price);
+                console.log('Color: ' + products[i].color);
+                console.log('Category: ' + products[i].category);
+                console.log('Providers: ' + addComma(products[i].providers));
+            }
+        }
     }
 }
+
 
 // 6.
 // 6.1.
@@ -206,15 +225,15 @@ while (true) {
         let newob = { name: newtask, complete: false };
         objectTask.push(newob);
     } else if (command == 'update') {
-        let pos = Number(prompt('Enter position:'));
+        let pos = Number(prompt('Enter position:')) - 1;
         let title = prompt('Enter new title');
-        objectTask[pos - 1].name = title;
+        objectTask[pos].name = title;
     } else if (command == 'complete') {
-        let pos = Number(prompt('Enter position:'));
-        objectTask[pos - 1].complete = true;
+        let pos = Number(prompt('Enter position:')) - 1;
+        objectTask[pos].complete = true;
     } else if (command == 'delete') {
-        let pos = Number(prompt('Enter position:'));
-        objectTask[pos - 1].splice[pos, 1];
+        let pos = Number(prompt('Enter position:')) - 1;
+        objectTask.splice(pos, 1);
     } else {
         break;
     }
