@@ -1,0 +1,29 @@
+p {
+    color: red;
+    font-size: 24px;
+}
+
+.PSR {
+    background: #00FF00;
+}
+
+p, h2 {
+    font-size: 24px;
+}
+
+[target="_blank"] {
+    color: yellow;
+}
+
+ul li {
+    font-weight: bold;
+}
+
+.item > span {
+    font-size: 18px;
+}
+
+.item > div > span {
+    font-style: italic;
+
+}
