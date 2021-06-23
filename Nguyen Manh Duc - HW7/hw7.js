@@ -65,47 +65,34 @@ userInputElem.addEventListener('click', (e) => {
 // 12.
 let items = ['Backpack', 'MiBand watch', 'Ring'];
 
-let readDom = document.getElementById("item_list_ul");
-readDom.innerHTML = '';
+const readDom = document.getElementById("item_list_ul");
 
-let removeEvent = [];
+function updateList() {
+    readDom.innerHTML = '';
+    for (let i = 0; i < items.length; i++) {
+        readDom.insertAdjacentHTML('beforeend', `<li><span>${items[i]} </span><button class="remove_btn">remove</button></li><br>`);
+    };
 
-for (let i in items) {
-    readDom.innerHTML += `<li>${items[i]} <button id=${i}>remove</button></li>`;
+    const arrDom = document.getElementsByClassName('remove_btn');
+    for (let i = 0; i < arrDom.length; i++) {
+        arrDom[i].addEventListener('click', () => {
+            items.splice(i, 1);
+            updateList();
+        });
+    };
 }
 
-for (let i in items) {
-    removeEvent.push(document.getElementById(i));
-}
+updateList();
 
-let newItem = document.getElementById('item_input');
-let addButton = document.getElementById('add_btn');
+const addButton = document.getElementById('add_btn');
+const newItem = document.getElementById('item_input');
+
 addButton.addEventListener('click', () => {
     items.push(newItem.value);
-    readDom.innerHTML = '';
-    for (let i in items) {
-        readDom.innerHTML += `<li>${items[i]} <button id=${i}>remove</button></li>`;
-        document.querySelector("#item_input").value = '';
-    };
-    for (let i in items) {
-        removeEvent.push(document.getElementById(i));
-    };
+    updateList();
+    newItem.value = '';
 });
 
-
-for (let i in items) {
-    removeEvent[i].addEventListener('click', () => {
-        items.splice(i, 1);
-        readDom.innerHTML = '';
-        for (let i in items) {
-            readDom.innerHTML += `<li>${items[i]} <button id=${i}>remove</button></li>`;
-        };
-        removeEvent = [];
-        for (let i in items) {
-            removeEvent.push(document.getElementById(i));
-        };
-    });
-}
 
 
 
