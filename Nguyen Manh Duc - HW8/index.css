@@ -1,0 +1,31 @@
+#reload {
+    font-family: monospace;
+    background: white;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    border: none;
+}
+
+#quote,
+#author {
+    font-family: monospace;
+    position: absolute;
+    right: 50px;
+}
+
+#quote {
+    top: 60%;
+    font-size: 30px;
+}
+
+#author {
+    top: 70%;
+}
+
+table,
+th,
+td {
+    padding: 2px;
+    border: 1px solid black;
+}
