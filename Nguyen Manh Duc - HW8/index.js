@@ -38,13 +38,15 @@ start.addEventListener('click', () => {
             time.textContent = '';
             clearInterval(theInterval);
             up.textContent = "Time's up";
-        };
+        }
         stop1.addEventListener('click', () => {
             time.textContent = '';
             clearInterval(theInterval);
-            stopped.textContent = 'Stopped';
+            up.textContent = '';
+            stopped.textContent = 'Stopped';;
         });
     }, 1000);
+    timer.value = 0;
 });
 
 // 3.
@@ -287,29 +289,75 @@ let timeSheetData = [{
     },
 ];
 
-let theBody = document.getElementById('niceBody');
-let add = document.getElementById('add');
+const newProject = document.getElementById('project');
+const newTask = document.getElementById('task');
+const newTime = document.getElementById('myTime');
+const add = document.getElementById('add');
 
-let updateList = (timeSheetData) => {
-    for (let i of timeSheetData) {
-        theBody.innerHTML += `<tr><td>${i.project}</td>
-    <td>${i.task}</td>
-    <td>${i.timeSpent}</td>
-    </tr>`;
-    };
-    add.addEventListener('click', () => {
-        theBody.innerHTML = '';
-        let newProject = document.getElementById('project').value;
-        let newTask = document.getElementById('task').value;
-        let newTime = document.getElementById('myTime').value;
-        let obj = {
-            "project": newProject,
-            "task": newTask,
-            "timeSpent": newTime,
-        };
-        timeSheetData.push(obj);
-        updateList(timeSheetData);
-    });
+const delete1 = document.getElementsByClassName('delBtn');
+const update1 = document.getElementsByClassName('update');
+
+const theBody = document.getElementById('niceBody');
+
+const removeLine = (i) => {
+    timeSheetData.splice(i, 1);
 };
 
-updateList(timeSheetData);
+const displayList = () => {
+    theBody.innerHTML = '';
+
+    for (let i = 0; i < timeSheetData.length; i++) {
+        theBody.innerHTML += `<tr><td>${timeSheetData[i].project}</td>
+        <td>${timeSheetData[i].task}</td>
+        <td>${timeSheetData[i].timeSpent}</td>
+        <td><button class='delBtn'>X</button></td>
+        <td><button class='update'>U</button></td>
+        </tr>`;
+    };
+
+    for (let i = 0; i < delete1.length; i++) {
+        delete1[i].addEventListener('click', () => {
+            removeLine(i);
+            displayList();
+        });
+    };
+
+    for (let i = 0; i < update1.length; i++) {
+        update1[i].addEventListener('click', () => {
+            newProject.value = timeSheetData[i].project;
+            newTask.value = timeSheetData[i].task;
+            newTime.value = timeSheetData[i].timeSpent;
+            add.textContent = 'Update';
+            add.id = 'myUpdate';
+            const update2 = document.getElementById('myUpdate');
+            update2.addEventListener('click', () => {
+                update2.textContent = 'Add';
+                const obj = {
+                    project: newProject.value,
+                    task: newTask.value,
+                    timeSpent: newTime.value,
+                };
+                console.log(obj);
+                timeSheetData[i] = obj;
+                displayList();
+            });
+        });
+    };
+
+};
+
+displayList();
+
+add.addEventListener('click', () => {
+    const project1 = newProject.value;
+    const task1 = newTask.value;
+    const time1 = newTime.value;
+    const obj = {
+        project: project1,
+        task: task1,
+        timeSpent: time1,
+    };
+    timeSheetData.push(obj);
+    newProject.value = newTask.value = newTime.value = '';
+    displayList();
+});
