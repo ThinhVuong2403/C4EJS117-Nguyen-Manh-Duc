@@ -297,7 +297,11 @@ const update2 = document.getElementById('myUpdate');
 
 const delete1 = document.getElementsByClassName('delBtn');
 const update1 = document.getElementsByClassName('update');
+const clear = document.getElementById('clear');
 
+clear.addEventListener('click', () => {
+    newProject.value = newTask.value = newTime.value = '';
+});
 
 const theBody = document.getElementById('niceBody');
 
@@ -306,6 +310,7 @@ const removeLine = (i) => {
 };
 
 const displayList = () => {
+    update2.style.display = 'none';
     theBody.innerHTML = '';
 
     for (let i = 0; i < timeSheetData.length; i++) {
@@ -326,12 +331,15 @@ const displayList = () => {
 
     for (let i = 0; i < update1.length; i++) {
         update1[i].addEventListener('click', () => {
+            add.style.display = 'none';
+            update2.style.display = 'inline';
             newProject.value = timeSheetData[i].project;
             newTask.value = timeSheetData[i].task;
             newTime.value = timeSheetData[i].timeSpent;
             update2.addEventListener('click', () => {
                 updateList(i);
                 i = '';
+                console.log(timeSheetData);
             });
         });
     }
@@ -344,6 +352,7 @@ const updateList = (i) => {
             task: newTask.value,
             timeSpent: newTime.value,
         };
+        add.style.display = 'inline';
         displayList();
     }
 };
@@ -354,8 +363,8 @@ add.addEventListener('click', () => {
         task: newTask.value,
         timeSpent: newTime.value,
     });
-    displayList();
     newProject.value = newTask.value = newTime.value = '';
+    displayList();
 });
 
 displayList();
