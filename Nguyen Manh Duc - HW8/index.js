@@ -293,9 +293,11 @@ const newProject = document.getElementById('project');
 const newTask = document.getElementById('task');
 const newTime = document.getElementById('myTime');
 const add = document.getElementById('add');
+const update2 = document.getElementById('myUpdate');
 
 const delete1 = document.getElementsByClassName('delBtn');
 const update1 = document.getElementsByClassName('update');
+
 
 const theBody = document.getElementById('niceBody');
 
@@ -327,37 +329,33 @@ const displayList = () => {
             newProject.value = timeSheetData[i].project;
             newTask.value = timeSheetData[i].task;
             newTime.value = timeSheetData[i].timeSpent;
-            add.textContent = 'Update';
-            add.id = 'myUpdate';
-            const update2 = document.getElementById('myUpdate');
             update2.addEventListener('click', () => {
-                update2.textContent = 'Add';
-                const obj = {
-                    project: newProject.value,
-                    task: newTask.value,
-                    timeSpent: newTime.value,
-                };
-                console.log(obj);
-                timeSheetData[i] = obj;
-                displayList();
+                updateList(i);
+                i = '';
             });
         });
-    };
+    }
+}
 
+const updateList = (i) => {
+    if (!(isNaN(i))) {
+        timeSheetData[i] = {
+            project: newProject.value,
+            task: newTask.value,
+            timeSpent: newTime.value,
+        };
+        displayList();
+    }
 };
 
-displayList();
-
 add.addEventListener('click', () => {
-    const project1 = newProject.value;
-    const task1 = newTask.value;
-    const time1 = newTime.value;
-    const obj = {
-        project: project1,
-        task: task1,
-        timeSpent: time1,
-    };
-    timeSheetData.push(obj);
-    newProject.value = newTask.value = newTime.value = '';
+    timeSheetData.push({
+        project: newProject.value,
+        task: newTask.value,
+        timeSpent: newTime.value,
+    });
     displayList();
+    newProject.value = newTask.value = newTime.value = '';
 });
+
+displayList();
