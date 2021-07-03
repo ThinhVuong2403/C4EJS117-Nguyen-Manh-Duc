@@ -91,28 +91,38 @@ displayHTML();
 
 const value = document.getElementById('new');
 const click = document.getElementById('submit');
+const div = document.getElementById('display');
 
-async function display() {
-    const data1 = fetch('https://sheetdb.io/api/v1/6fm2vsjaj1q1w');
-    const datax = await data1;
-    const parsex = await datax.json();
+async function getAPI() {
+    let nameArr = [];
+    const data1 = await fetch('https://sheetdb.io/api/v1/6fm2vsjaj1q1w');
+    const parsex = await data1.json();
+    for (let i of parsex) {
+        nameArr.push(i.name);
+    }
+    updateList(nameArr);
+}
+
+function updateList(nameArr) {
     value.value = '';
-    const div = document.getElementById('display');
     div.innerHTML = '';
-    for (let x in parsex) {
-        div.insertAdjacentHTML('beforeend', `<p class='item'>${Number(x)+1}. ${parsex[x].name} <button id=${Number(x)+1}>X</button></p>`);
+    for (let x in nameArr) {
+        div.insertAdjacentHTML('beforeend', `<p class='item'>${Number(x)+1}. ${nameArr[x]} <button id=${Number(x)+1}>X</button></p>`);
         const del = document.getElementById(`${Number(x) + 1}`);
         del.addEventListener('click', () => {
-            axios.delete(`https://sheetdb.io/api/v1/6fm2vsjaj1q1w/name/${parsex[x].name}`)
+            axios.delete(`https://sheetdb.io/api/v1/6fm2vsjaj1q1w/name/${nameArr[x]}`)
                 .then(response => { console.log(response.data) });
+            getAPI();
         });
     }
-    click.addEventListener('click', () => {
-        axios.post('https://sheetdb.io/api/v1/6fm2vsjaj1q1w', {
-            "data": [{ "name": `${value.value}` }]
-        }).then(response => { console.log(response.data) });
-        display();
-    });
-};
 
-display();
+}
+
+click.addEventListener('click', () => {
+    axios.post('https://sheetdb.io/api/v1/6fm2vsjaj1q1w', {
+        "data": [{ "name": `${value.value}` }]
+    }).then(response => { console.log(response.data) });
+    getAPI();
+});
+
+getAPI();
