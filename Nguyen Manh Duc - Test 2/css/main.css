@@ -1,0 +1,23 @@
+.flex-container-main-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+}
+
+.header {
+    text-align: center;
+}
+
+img {
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+.container-char {
+    padding: 20px;
+    margin: 20px;
+    width: 200px;
+    display: inline-block;
+}
