@@ -9,5 +9,3 @@ const val = document.getElementById('search');
 find.addEventListener('click', () => {
     displayName(val.value, link, firstBody);
 })
-
-displayChar(id, source, body)
