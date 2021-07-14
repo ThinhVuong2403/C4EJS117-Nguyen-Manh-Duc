@@ -1,7 +1,7 @@
 const displayItems = (object, x) => {
     let strHTML = '';
     for (let i in object) {
-        if (i != "id" && i != "user") {
+        if (i != "id" && i != "username") {
             strHTML += `<td>${object[i]}</td>`;
         } else if (i == "id") {
             strHTML = `<td>${object[i]}</td>` + strHTML;

@@ -1,4 +1,5 @@
 let stock = [{
+    "barcode": "123AS56",
     "name": "Cherry",
     "grade": "Premium",
     "origin": "Canada",
@@ -7,10 +8,11 @@ let stock = [{
     "shipping": "yes",
     "promotion": "8% off on the Unit Price when buy more than 3 kg",
     "username": "thinh",
-    "id": "10345"
+    "id": "1"
 }];
 
 let employee = [{
+    "Number": "32088264910",
     "name": "Nguyen Manh Duc",
     "degree": "BSc, Computer Science from RyersonU",
     "age": "19",
@@ -20,30 +22,22 @@ let employee = [{
     "promotionstatus": "Already at highest position",
     "bonus": "2,000,000 VND this month",
     "username": "duke",
-    "id": "20882649"
+    "id": "1"
 }];
 
 
 const users = [{
-        "username": 'thinh',
-        "password": 'thinh24',
-        "name": 'Thinh Vuong',
-        "DOB": '03/24/1999',
-        "gender": 'Male',
-        "company": 'Immense Horse & Co',
-        "email": 'thinh234@gmail.com',
-        "registeredFunction": 'ManageStock',
-        "role": 'First-ranked Member'
+        "username": "thinh",
+        "password": "thinh24",
+        "email": "thinh234@gmail.com",
+        "registeredFunction": "ManageStock",
+        "id": "1"
     },
     {
-        "username": 'duke',
-        "password": 'coder',
-        "name": 'Duc Manh Nguyen',
-        "DOB": '23/02/2002',
-        "gender": 'Male',
-        "company": 'Immense Horse & Co',
-        "email": 'manhducams@gmail.com',
-        "registeredFunction": 'ManageEmployees',
-        "role": 'Project Executive Leader'
+        "username": "duke",
+        "password": "coder",
+        "email": "manhducams@gmail.com",
+        "registeredFunction": "ManageEmployees",
+        "id": "2"
     }
 ];
