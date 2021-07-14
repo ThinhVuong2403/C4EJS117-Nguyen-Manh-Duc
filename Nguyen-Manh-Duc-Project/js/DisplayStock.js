@@ -7,6 +7,7 @@ const update2 = document.getElementById('myUpdate');
 const delete1 = document.getElementsByClassName('delBtn');
 const clear = document.getElementById('clear');
 
+const theID = document.getElementById("ID");
 const name1 = document.getElementById('Name');
 const grade = document.getElementById('Grade');
 const origin1 = document.getElementById('Origin');
@@ -18,7 +19,7 @@ const promotion = document.getElementById('Promotion');
 const theBody = document.getElementById('StockBody');
 
 clear.addEventListener('click', () => {
-    name1.value = grade.value = origin1.value = unitPrice.value = availability.value = shipping.value = promotion.value = '';
+    theID.value = name1.value = grade.value = origin1.value = unitPrice.value = availability.value = shipping.value = promotion.value = '';
     update2.style.display = 'none';
     add.style.display = 'inline';
 });
@@ -26,6 +27,7 @@ clear.addEventListener('click', () => {
 
 async function updateListStock(id) {
     await updateItem(stockRealTime, id, {
+        "ID": theID.value,
         "name": name1.value,
         "grade": grade.value,
         "origin": origin1.value,
@@ -40,6 +42,7 @@ async function updateListStock(id) {
 
 add.addEventListener('click', async function() {
     await addNewItem(stockRealTime, {
+        "ID": theID.value,
         "name": name1.value,
         "grade": grade.value,
         "origin": origin1.value,
@@ -48,7 +51,7 @@ add.addEventListener('click', async function() {
         "shipping": shipping.value,
         "promotion": promotion.value,
     });
-    name1.value = grade.value = origin1.value = unitPrice.value = availability.value = shipping.value = promotion.value = '';
+    theID.value = name1.value = grade.value = origin1.value = unitPrice.value = availability.value = shipping.value = promotion.value = '';
     displayList(stockRealTime, theBody, update2);
 });
 

@@ -3,7 +3,7 @@ const displayItems = (object, x) => {
     for (let i in object) {
         if (i != "id" && i != "username") {
             strHTML += `<td>${object[i]}</td>`;
-        } else if (i == "id") {
+        } else if (i == "ID") {
             strHTML = `<td>${object[i]}</td>` + strHTML;
         }
     };
@@ -20,6 +20,7 @@ async function displayArr(json, x) {
 }
 
 async function displayList(source, x, updButton) {
+    theID.value = '';
     name1.value = '';
     grade.value = '';
     origin1.value = '';
@@ -48,6 +49,7 @@ function updateOneItem(json, updButton) {
         document.getElementsByClassName(`${i["id"]}`)[1].addEventListener('click', () => {
             add.style.display = 'none';
             updButton.style.display = 'inline';
+            theID.value = i["ID"];
             name1.value = i["name"];
             grade.value = i["grade"];
             origin1.value = i["origin"];

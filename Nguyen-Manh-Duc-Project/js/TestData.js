@@ -1,5 +1,4 @@
 let stock = [{
-    "barcode": "123AS56",
     "name": "Cherry",
     "grade": "Premium",
     "origin": "Canada",
@@ -8,11 +7,11 @@ let stock = [{
     "shipping": "yes",
     "promotion": "8% off on the Unit Price when buy more than 3 kg",
     "username": "thinh",
+    "ID": "123AS56",
     "id": "1"
 }];
 
 let employee = [{
-    "Number": "32088264910",
     "name": "Nguyen Manh Duc",
     "degree": "BSc, Computer Science from RyersonU",
     "age": "19",
@@ -22,6 +21,7 @@ let employee = [{
     "promotionstatus": "Already at highest position",
     "bonus": "2,000,000 VND this month",
     "username": "duke",
+    "ID": "320MD64910",
     "id": "1"
 }];
 
